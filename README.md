@@ -1,8 +1,8 @@
 # Team-AI
 C240 Final Assessment
 
-Static Website (Vibe Coding) - GitHub Copilot
-Software to Build AI - Flowise/n8n (Still deciding) 
+- Static Website (Vibe Coding) - GitHub Copilot
+- Software to Build AI - Flowise/n8n (Still deciding) 
 
 **# Create an AI Travel Planner Agent for 5 countries in Europe:**
 - Li Kai: Spain
