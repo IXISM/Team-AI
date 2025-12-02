@@ -19,7 +19,7 @@ Software to Build AI - Flowise/n8n (Still deciding)
 - Our primary audience is the adults aged 20-29, who have better autonomy and a consistent source of income. These people are curious but lack the time and research to fully plan their itinerary, considering their differing socio-economic backgrounds
 
 **# Core Goals**
--To help customers plan their next holiday seamlessly without any trouble
+- To help customers plan their next holiday seamlessly without any trouble
 
 **# Expected Value/Impact**
 - Efficiency and convenience when planning an itinerary
