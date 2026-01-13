@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover France | Your Dream French Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">🇫🇷 France Travel</div>
+        <div class="nav-links">
+            <a href="#discover">Discover</a>
+            <a href="#ai-agent">AI Agent</a>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel -->
+    <div class="carousel-container">
+        <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide slide-1">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Eiffel Tower</h1>
+                    <p class="carousel-subtitle">The Iron Lady of Paris</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-2">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Paris at Night</h1>
+                    <p class="carousel-subtitle">The City of Lights</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-3">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Arc de Triomphe</h1>
+                    <p class="carousel-subtitle">Monument of French Glory</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-4">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Mont Saint-Michel</h1>
+                    <p class="carousel-subtitle">Medieval Marvel</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-5">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Palace of Versailles</h1>
+                    <p class="carousel-subtitle">Royal Grandeur</p>
+                </div>
+            </div>
+        </div>
+        
+        <button class="carousel-arrow prev" onclick="moveCarousel(-1)">‹</button>
+        <button class="carousel-arrow next" onclick="moveCarousel(1)">›</button>
+        
+        <div class="carousel-nav" id="carouselNav">
+            <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+            <span class="carousel-dot" onclick="goToSlide(1)"></span>
+            <span class="carousel-dot" onclick="goToSlide(2)"></span>
+            <span class="carousel-dot" onclick="goToSlide(3)"></span>
+            <span class="carousel-dot" onclick="goToSlide(4)"></span>
+        </div>
+    </div>
+
+    <div class="content-section" id="discover">
+        <h2 class="section-title">Discover the Magic of France</h2>
+        <p class="section-subtitle">From iconic landmarks to hidden gems, let our AI assistant help you plan the perfect French adventure</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🗼</div>
+                <div class="feature-title">Iconic Landmarks</div>
+                <div class="feature-text">Experience the grandeur of the Eiffel Tower, explore the Louvre Museum, and wander through Notre-Dame Cathedral</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🥐</div>
+                <div class="feature-title">Culinary Excellence</div>
+                <div class="feature-text">Indulge in authentic croissants, world-class wines, artisan cheeses, and Michelin-starred cuisine</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🏰</div>
+                <div class="feature-title">Historic Châteaux</div>
+                <div class="feature-text">Visit majestic castles, from Versailles' opulence to Loire Valley's fairy-tale fortresses</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-title">Art & Culture</div>
+                <div class="feature-text">Immerse yourself in world-renowned museums, galleries, and vibrant cultural experiences</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🌊</div>
+                <div class="feature-title">French Riviera</div>
+                <div class="feature-text">Relax on stunning Mediterranean beaches in Nice, Cannes, and Saint-Tropez</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⛰️</div>
+                <div class="feature-title">Alpine Adventures</div>
+                <div class="feature-text">Explore breathtaking mountains, ski world-class slopes, and discover charming Alpine villages</div>
+            </div>
+        </div>
+        
+        <div class="cta-box">
+            <h3>Ready to Start Your French Adventure?</h3>
+            <p>💬 Chat with our AI travel assistant below to create your personalized itinerary</p>
+        </div>
+    </div>
+
+    <!-- Interactive Section: Map and Bot -->
+    <div class="interactive-section" id="ai-agent">
+        <div class="map-container">
+            <h3 class="map-title">📍 Explore France</h3>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2712634.2952576066!2d0.6944799!3d46.603354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd54a02933785731%3A0x6bfd3f96c747d9f7!2sFrance!5e0!3m2!1sen!2s!4v1234567890"
+                width="100%" 
+                height="450" 
+                style="border:0; border-radius: 15px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div class="map-info">
+                <p>🗺️ Click on the map to explore popular destinations across France</p>
+            </div>
+        </div>
+        
+        <div class="bot-wrapper">
+            <h3 class="bot-title">💬 AI Travel Assistant</h3>
+            <div id="bot-container"></div>
+        </div>
+    </div>
+
+    <!-- Currency Exchange Section -->
+    <div class="exchange-section">
+        <div class="exchange-container">
+            <h2 class="exchange-title">💱 Currency Exchange</h2>
+            <p class="exchange-subtitle">Convert your currency to Euros (EUR)</p>
+            
+            <div class="exchange-form">
+                <div class="input-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" placeholder="Enter amount" value="100" min="0" step="0.01">
+                </div>
+                
+                <div class="input-group">
+                    <label for="fromCurrency">From</label>
+                    <select id="fromCurrency">
+                        <option value="USD">USD - US Dollar</option>
+                        <option value="GBP">GBP - British Pound</option>
+                        <option value="JPY">JPY - Japanese Yen</option>
+                        <option value="CHF">CHF - Swiss Franc</option>
+                        <option value="CAD">CAD - Canadian Dollar</option>
+                        <option value="AUD">AUD - Australian Dollar</option>
+                        <option value="CNY">CNY - Chinese Yuan</option>
+                        <option value="INR">INR - Indian Rupee</option>
+                    </select>
+                </div>
+                
+                <button class="exchange-btn" onclick="convertCurrency()">Convert to EUR 💶</button>
+                
+                <div class="result-box" id="resultBox">
+                    <div class="result-amount" id="resultAmount">--</div>
+                    <div class="result-label">Euros (EUR)</div>
+                    <div class="exchange-rate" id="exchangeRate"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>🇫🇷 France Travel | Your AI-Powered Journey Through France | © 2026</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 5;
+        const track = document.getElementById('carouselTrack');
+        const dots = document.querySelectorAll('.carousel-dot');
+        
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+        
+        // Auto-advance carousel every 5 seconds
+        setInterval(() => {
+            moveCarousel(1);
+        }, 5000);
+
+        // Currency Exchange Function
+        async function convertCurrency() {
+            const amount = document.getElementById('amount').value;
+            const fromCurrency = document.getElementById('fromCurrency').value;
+            const resultAmount = document.getElementById('resultAmount');
+            const exchangeRate = document.getElementById('exchangeRate');
+            
+            if (!amount || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            resultAmount.textContent = 'Converting...';
+            exchangeRate.textContent = '';
+            
+            try {
+                const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
+                const data = await response.json();
+                const rate = data.rates.EUR;
+                const result = (amount * rate).toFixed(2);
+                
+                resultAmount.textContent = `€${result}`;
+                exchangeRate.textContent = `1 ${fromCurrency} = €${rate.toFixed(4)} EUR`;
+            } catch (error) {
+                resultAmount.textContent = 'Error';
+                exchangeRate.textContent = 'Unable to fetch exchange rates. Please try again.';
+            }
+        }
+        
+        // Auto-convert on page load
+        convertCurrency();
+    </script>
+
+    <script src="https://cdn.botpress.cloud/webchat/v3.5/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2025/12/29/09/20251229091928-1RDSYH8B.js" defer></script>
+    
+</html>

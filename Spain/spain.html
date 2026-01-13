@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Spain | Your Dream Spanish Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Custom Red Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+
+    <nav>
+        <a href="../index.html#agents" class="back-arrow" title="Back to Home">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Home
+        </a>
+        <div class="logo">🇪🇸 Spain Travel</div>
+        <div class="nav-links">
+            <a href="#destinations">Destinations</a>
+            <a href="#experiences">Experiences</a>
+            <a href="#plan">Plan Trip</a>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel -->
+    <div class="carousel-container">
+        <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide slide-1">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Sagrada Familia</h1>
+                    <p class="carousel-subtitle">Gaudí's Masterpiece in Barcelona</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-2">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Alhambra Palace</h1>
+                    <p class="carousel-subtitle">Moorish Wonder of Granada</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-3">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Costa del Sol</h1>
+                    <p class="carousel-subtitle">Sun-Kissed Mediterranean Beaches</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-4">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Plaza Mayor</h1>
+                    <p class="carousel-subtitle">Heart of Madrid</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-5">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Park Güell</h1>
+                    <p class="carousel-subtitle">Colorful Paradise in Barcelona</p>
+                </div>
+            </div>
+        </div>
+        
+        <button class="carousel-arrow prev" onclick="moveCarousel(-1)">‹</button>
+        <button class="carousel-arrow next" onclick="moveCarousel(1)">›</button>
+        
+        <div class="carousel-nav" id="carouselNav">
+            <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+            <span class="carousel-dot" onclick="goToSlide(1)"></span>
+            <span class="carousel-dot" onclick="goToSlide(2)"></span>
+            <span class="carousel-dot" onclick="goToSlide(3)"></span>
+            <span class="carousel-dot" onclick="goToSlide(4)"></span>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">Discover the Magic of Spain</h2>
+        <p class="section-subtitle">From vibrant cities to stunning coastlines, let our AI assistant help you plan the perfect Spanish adventure</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏛️</div>
+                <div class="feature-title">Iconic Landmarks</div>
+                <div class="feature-text">Explore Sagrada Familia, Alhambra Palace, and historic treasures that showcase Spain's rich cultural heritage</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🥘</div>
+                <div class="feature-title">Culinary Excellence</div>
+                <div class="feature-text">Savor authentic paella, tapas, jamón ibérico, and world-class wines from renowned Spanish regions</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🏖️</div>
+                <div class="feature-title">Stunning Beaches</div>
+                <div class="feature-text">Relax on Mediterranean coastlines from Costa del Sol to the beautiful Balearic Islands</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-title">Art & Culture</div>
+                <div class="feature-text">Experience Gaudí's architecture, passionate flamenco shows, and Spain's vibrant festivals</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🏰</div>
+                <div class="feature-title">Historic Cities</div>
+                <div class="feature-text">Wander through Madrid, Barcelona, Seville, and Granada's enchanting ancient streets</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⛰️</div>
+                <div class="feature-title">Natural Wonders</div>
+                <div class="feature-text">Discover Pyrenees mountains, volcanic Canary Islands, and Spain's diverse landscapes</div>
+            </div>
+        </div>
+        
+        <div class="cta-box">
+            <h3>Ready to Start Your Spanish Adventure?</h3>
+            <p>💬 Chat with our AI travel assistant below to create your personalized itinerary</p>
+        </div>
+    </div>
+
+    <!-- Interactive Section: Map -->
+    <div class="interactive-section">
+        <div class="map-container">
+            <h3 class="map-title">📍 Explore Spain</h3>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6141672.924383253!2d-8.746380999999999!3d40.0028028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc42e3783261bc8b%3A0xa6ec2c940768a3ec!2sSpain!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s"
+                width="100%" 
+                height="450" 
+                style="border:0; border-radius: 15px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div class="map-info">
+                <p>🗺️ Click on the map to explore popular destinations across Spain</p>
+            </div>
+        </div>
+        
+        <!-- Chat Trigger Button -->
+        <div class="chat-trigger-container">
+            <button class="chat-trigger-btn" onclick="openChatbot()">
+                <span class="chat-icon">💬</span>
+                <div class="chat-trigger-text">
+                    <h3>Chat with AI Travel Assistant</h3>
+                    <p>Get instant help planning your Spanish adventure</p>
+                </div>
+                <span class="chat-arrow">→</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Chatbot Modal Popup -->
+    <div class="chatbot-modal" id="chatbotModal">
+        <div class="chatbot-overlay" onclick="closeChatbot()"></div>
+        <div class="chatbot-container">
+            <div class="chatbot-header">
+                <div class="chatbot-header-content">
+                    <span class="chatbot-icon">🇪🇸</span>
+                    <div>
+                        <h3>Spain Travel Assistant</h3>
+                        <p>Ask me anything about Spain!</p>
+                    </div>
+                </div>
+                <button class="close-btn" onclick="closeChatbot()">✕</button>
+            </div>
+            <div class="bot-wrapper">
+                <div id="bot-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>🇪🇸 Spain Travel | Your AI-Powered Journey Through Spain | © 2026</p>
+    </footer>
+
+    <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const totalSlides = 5;
+        const track = document.getElementById('carouselTrack');
+        const dots = document.querySelectorAll('.carousel-dot');
+        
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+        
+        // Auto-advance carousel every 5 seconds
+        setInterval(() => {
+            moveCarousel(1);
+        }, 5000);
+
+        // Chatbot functionality
+        const API_ENDPOINT = 'https://flowise-production-c7b4.up.railway.app/api/v1/prediction/abd76dc4-463c-45bc-a17f-ec49e937799f';
+        
+        const chatContainer = document.getElementById('bot-container');
+        let chatMessages = [];
+        let isProcessing = false;
+
+        // Initialize chat interface
+        function initChat() {
+            chatContainer.innerHTML = `
+                <div style="display: flex; flex-direction: column; height: 100%; min-height: 600px; background: linear-gradient(to bottom, #f8f9fa, #ffffff); border-radius: 15px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+                    <div style="padding: 1.2rem 1rem; background: linear-gradient(135deg, rgba(196, 30, 58, 0.05), rgba(255, 193, 7, 0.05)); border-bottom: 1px solid #e0e0e0; display: flex; flex-wrap: wrap; gap: 0.5rem; max-height: 120px; overflow-y: auto;" id="suggestions">
+                        <button class="pill-button" onclick="useSuggestion('What is the best time to visit Spain?')">Best time to visit</button>
+                        <button class="pill-button" onclick="useSuggestion('Where should I go in Spain for a first visit?')">Where should I go</button>
+                        <button class="pill-button" onclick="useSuggestion('What food should I try in Spain?')">Food to try</button>
+                        <button class="pill-button" onclick="useSuggestion('How much does a trip to Spain typically cost?')">Budget tips</button>
+                        <button class="pill-button" onclick="useSuggestion('How do I get around Spain by train?')">Transportation</button>
+                        <button class="pill-button" onclick="useSuggestion('What cultural events happen in Spain?')">Cultural events</button>
+                        <button class="pill-button" onclick="useSuggestion('Is Spain safe for tourists?')">Safety tips</button>
+                        <button class="pill-button" onclick="useSuggestion('What should I pack for Spain?')">What to pack</button>
+                        <button class="pill-button" onclick="useSuggestion('What activities can I do in Spain?')">Activities</button>
+                        <button class="pill-button" onclick="useSuggestion('What are popular attractions in Spain?')">Popular attractions</button>
+                        <button class="pill-button" onclick="useSuggestion('Tell me about Spanish traditions')">Traditions</button>
+                        <button class="pill-button" onclick="useSuggestion('What Spanish phrases should I learn?')">Useful phrases</button>
+                        <button class="pill-button" onclick="useSuggestion('How many days should I spend in Spain?')">Trip duration</button>
+                        <button class="pill-button" onclick="useSuggestion('What are the best day trips from major cities?')">Day trips</button>
+                    </div>
+                    <div style="flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;" id="messages">
+                        <div style="background: linear-gradient(135deg, #fff, #fef9f5); padding: 1.2rem; border-radius: 18px 18px 18px 4px; box-shadow: 0 3px 12px rgba(0,0,0,0.08); border-left: 4px solid #C41E3A;">
+                            <p style="margin: 0; color: #333; font-size: 0.95rem; line-height: 1.6;"><strong>¡Hola!</strong> I'm your Spain Travel Assistant. Ask me about places, food, transport, safety, weather, budgeting or itineraries in Spain. 🇪🇸</p>
+                        </div>
+                    </div>
+                    <div style="padding: 1.2rem; background: white; border-top: 2px solid #f0f0f0; display: flex; gap: 0.7rem; box-shadow: 0 -2px 10px rgba(0,0,0,0.05);">
+                        <input type="text" id="userInput" placeholder="Ask me about Spain... ✈️" 
+                            style="flex: 1; padding: 0.85rem 1.2rem; border: 2px solid #e0e0e0; border-radius: 25px; font-size: 0.95rem; outline: none; font-family: 'Poppins', sans-serif; transition: all 0.3s;"
+                            onfocus="this.style.borderColor='#C41E3A'; this.style.boxShadow='0 0 0 3px rgba(196,30,58,0.1)'"
+                            onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'"
+                            onkeypress="if(event.key === 'Enter') sendMessage()">
+                        <button onclick="sendMessage()" id="sendBtn"
+                            style="padding: 0.85rem 2rem; background: linear-gradient(135deg, #C41E3A, #FFC107); color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: 600; font-size: 0.95rem; font-family: 'Poppins', sans-serif; transition: all 0.3s; box-shadow: 0 4px 12px rgba(196,30,58,0.3);"
+                            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(196,30,58,0.4)'" 
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(196,30,58,0.3)'">
+                            Send 📤
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function useSuggestion(text) {
+            const input = document.getElementById('userInput');
+            input.value = text;
+            input.focus();
+        }
+
+        function formatMessage(text) {
+            // Convert **bold** to <strong>
+            text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            
+            // Split into lines
+            const lines = text.split('\n');
+            let formatted = '';
+            let inList = false;
+            
+            for (let line of lines) {
+                line = line.trim();
+                
+                // Check for bullet points (starts with * or -)
+                if (line.match(/^[\*\-]\s+(.+)$/)) {
+                    const content = line.replace(/^[\*\-]\s+/, '');
+                    if (!inList) {
+                        formatted += '<ul style="margin: 0.5rem 0; padding-left: 1.5rem; list-style-type: disc;">';
+                        inList = true;
+                    }
+                    formatted += `<li style="margin: 0.3rem 0; line-height: 1.5;">${content}</li>`;
+                } else {
+                    // Close list if we were in one
+                    if (inList) {
+                        formatted += '</ul>';
+                        inList = false;
+                    }
+                    // Add regular line
+                    if (line) {
+                        formatted += `<p style="margin: 0.5rem 0; line-height: 1.6;">${line}</p>`;
+                    }
+                }
+            }
+            
+            // Close list if still open
+            if (inList) {
+                formatted += '</ul>';
+            }
+            
+            return formatted;
+        }
+
+        function addMessage(text, isUser = false) {
+            const messagesDiv = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                background: ${isUser ? 'linear-gradient(135deg, #C41E3A, #FFC107)' : 'white'};
+                color: ${isUser ? 'white' : '#333'};
+                padding: 1.2rem;
+                border-radius: ${isUser ? '18px 18px 4px 18px' : '18px 18px 18px 4px'};
+                box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+                ${isUser ? 'margin-left: auto; max-width: 80%;' : 'max-width: 90%;'}
+                animation: slideIn 0.3s ease;
+            `;
+            messageDiv.innerHTML = isUser ? text : formatMessage(text);
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function showTyping() {
+            const messagesDiv = document.getElementById('messages');
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'typing';
+            typingDiv.style.cssText = 'background: linear-gradient(135deg, #f8f9fa, #fff); padding: 1.2rem; border-radius: 18px 18px 18px 4px; box-shadow: 0 3px 12px rgba(0,0,0,0.08); border-left: 4px solid #FFC107; max-width: 90%;';
+            typingDiv.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 0.5rem; color: #666;">
+                    <span style="font-style: italic;">Thinking</span>
+                    <div style="display: flex; gap: 4px;">
+                        <span style="width: 8px; height: 8px; background: #C41E3A; border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; animation-delay: -0.32s;"></span>
+                        <span style="width: 8px; height: 8px; background: #FFC107; border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; animation-delay: -0.16s;"></span>
+                        <span style="width: 8px; height: 8px; background: #C41E3A; border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both;"></span>
+                    </div>
+                </div>
+                <style>
+                    @keyframes bounce {
+                        0%, 80%, 100% { transform: scale(0); }
+                        40% { transform: scale(1); }
+                    }
+                </style>
+            `;
+            messagesDiv.appendChild(typingDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function removeTyping() {
+            const typing = document.getElementById('typing');
+            if (typing) typing.remove();
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            
+            if (!message || isProcessing) return;
+            
+            isProcessing = true;
+            document.getElementById('sendBtn').disabled = true;
+            
+            addMessage(message, true);
+            input.value = '';
+            showTyping();
+            
+            try {
+                const response = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: message })
+                });
+                
+                const data = await response.json();
+                removeTyping();
+                
+                const reply = data.text || data.answer || data.response || 'Sorry, I could not process that request.';
+                addMessage(reply);
+            } catch (error) {
+                removeTyping();
+                addMessage('Sorry, there was an error. Please try again.');
+            } finally {
+                isProcessing = false;
+                document.getElementById('sendBtn').disabled = false;
+                input.focus();
+            }
+        }
+
+        // Initialize on load
+        initChat();
+
+        // Chatbot Modal Functions
+        function openChatbot() {
+            document.getElementById('chatbotModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeChatbot() {
+            document.getElementById('chatbotModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeChatbot();
+            }
+        });
+
+        // Custom Red Cursor
+        const cursorDot = document.getElementById('cursorDot');
+        const cursorOutline = document.getElementById('cursorOutline');
+
+        window.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+            
+            cursorOutline.style.left = e.clientX - 20 + 'px';
+            cursorOutline.style.top = e.clientY - 20 + 'px';
+        });
+
+        // Interactive elements cursor effect
+        const interactiveElements = document.querySelectorAll('a, button, .feature-card, .pill-button, .carousel-arrow, .carousel-dot');
+        
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorDot.style.transform = 'scale(2.5)';
+                cursorOutline.style.transform = 'scale(1.5)';
+                cursorOutline.style.borderColor = '#FFC107';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursorDot.style.transform = 'scale(1)';
+                cursorOutline.style.transform = 'scale(1)';
+                cursorOutline.style.borderColor = '#C41E3A';
+            });
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeamAi Travel Planner - Your Premium AI Travel Companion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --dark-bg: #0f0f1a;
+            --card-bg: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --gradient-2: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            letter-spacing: -0.02em;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header/Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 26, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 5%;
+            box-shadow: 0 5px 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 5%;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            background: var(--secondary);
+            top: 60%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            background: var(--accent);
+            bottom: 20%;
+            left: 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            50% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+            75% {
+                transform: translate(20px, 30px) scale(1.05);
+            }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            animation: slideInDown 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient-2);
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+        }
+
+        /* Intro Section */
+        .intro {
+            padding: 8rem 5%;
+            position: relative;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--card-bg) 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .intro-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .intro-card {
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .intro-card:hover::before {
+            left: 100%;
+        }
+
+        .intro-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.2);
+        }
+
+        .intro-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        .intro-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .intro-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Trust Section */
+        .trust {
+            padding: 8rem 5%;
+            background: var(--dark-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin-top: 3rem;
+        }
+
+        .carousel-track {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            width: fit-content;
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .trust-card {
+            min-width: 380px;
+            height: 220px;
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            margin: 0 1rem;
+            padding: 2.5rem;
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .trust-card:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.3);
+        }
+
+        .trust-card:hover::after {
+            opacity: 0.1;
+        }
+
+        .trust-logo {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            z-index: 1;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .company-logo {
+            width: 140px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+        }
+
+        .company-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .trust-quote {
+            color: var(--text-secondary);
+            text-align: center;
+            font-style: italic;
+            z-index: 1;
+        }
+
+        .trust-rating {
+            margin-top: 1rem;
+            color: var(--accent);
+            font-size: 1.2rem;
+            z-index: 1;
+        }
+
+        /* Agents Section */
+        .agents {
+            padding: 8rem 5%;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--card-bg) 100%);
+            position: relative;
+        }
+
+        .agents-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .agent-card {
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-2);
+            border-radius: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .agent-card:hover::before {
+            opacity: 1;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .agent-image {
+            width: 100%;
+            height: 280px;
+            background: var(--gradient);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .country-flag {
+            font-size: 5rem;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+        }
+
+        .country-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            opacity: 0.95;
+        }
+
+        .agent-image::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%);
+            }
+        }
+
+        .agent-content {
+            padding: 2rem;
+        }
+
+        .agent-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .agent-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .agent-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .agent-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .agent-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .agent-link {
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .agent-link::after {
+            content: '→';
+            margin-left: 0.5rem;
+            transition: margin-left 0.3s ease;
+        }
+
+        .agent-link:hover::after {
+            margin-left: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.8));
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .intro-grid,
+            .agents-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .trust-card {
+                min-width: 280px;
+            }
+        }
+
+        /* Cursor Effects */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.15s ease;
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--gradient-2);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        /* Parallax Elements */
+        .parallax-element {
+            transition: transform 0.1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="logo">TeamAi</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#intro">Features</a></li>
+                <li><a href="#trust">Trust</a></li>
+                <li><a href="#agents">Agents</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <div class="floating-elements">
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+            </div>
+        </div>
+        <div class="hero-content parallax-element">
+            <h1 class="hero-title">Your European Journey, Brought to you by TeamAi</h1>
+            <p class="hero-subtitle">Connect with specialized Agents for Switzerland, Germany, Spain, France, and Italy</p>
+            <div class="cta-buttons">
+                <a href="#agents" class="btn btn-primary">Explore Agents</a>
+                <a href="#intro" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section class="intro" id="intro">
+        <h2 class="section-title">Why Choose TeamAi?</h2>
+        <p class="section-subtitle">Discover the power of AI-driven travel planning that adapts to your unique preferences</p>
+        
+        <div class="intro-grid">
+            <div class="intro-card">
+                <div class="intro-icon">🚀</div>
+                <h3>Intelligent Planning</h3>
+                <p>Our AI analyzes millions of travel data points to create the perfect itinerary tailored just for you. Smart recommendations that evolve with your preferences.</p>
+            </div>
+            
+            <div class="intro-card">
+                <div class="intro-icon">🌍</div>
+                <h3>Global Coverage</h3>
+                <p>Access to destinations worldwide with real-time updates, local insights, and hidden gems that only our AI can discover for you.</p>
+            </div>
+            
+            <div class="intro-card">
+                <div class="intro-icon">💎</div>
+                <h3>Premium Experience</h3>
+                <p>Luxury meets technology. Experience first-class service with AI-powered concierge support available 24/7 wherever you are.</p>
+            </div>
+            
+            <div class="intro-card">
+                <div class="intro-icon">⚡</div>
+                <h3>Bookings</h3>
+                <p>Book flights, hotels, and experiences in seconds. Our AI negotiates the best deals and handles all the details for you.</p>
+            </div>
+            
+            <div class="intro-card">
+                <div class="intro-icon">🎯</div>
+                <h3>Personalized</h3>
+                <p>Every recommendation is uniquely yours. Our AI learns from your choices to deliver increasingly perfect travel experiences.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust" id="trust">
+        <div class="trust-content">
+            <h2 class="section-title">Trusted by Industry Leaders</h2>
+            <p class="section-subtitle">Join thousands of travelers who trust our AI-powered platform</p>
+            
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- First set of cards -->
+                    <div class="trust-card">
+                        <div class="trust-logo">Lufthansa Group</div>
+                        <p class="trust-quote">"Exceptional AI integration for European travel planning"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">Swiss International Air Lines</div>
+                        <p class="trust-quote">"Precision meets innovation in travel technology"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">Amadeus</div>
+                        <p class="trust-quote">"Leading-edge AI solutions for modern travelers"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">Booking.com</div>
+                        <p class="trust-quote">"Revolutionary approach to European travel planning"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">TUI Group</div>
+                        <p class="trust-quote">"Smart technology transforming holiday experiences"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">Expedia Group</div>
+                        <p class="trust-quote">"Next-generation travel intelligence platform"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">Rail Europe</div>
+                        <p class="trust-quote">"Seamless integration for European rail travel"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">Accor Hotels</div>
+                        <p class="trust-quote">"Premium hospitality meets AI innovation"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="trust-card">
+                        <div class="trust-logo">Lufthansa Group</div>
+                        <p class="trust-quote">"Exceptional AI integration for European travel planning"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">Swiss International Air Lines</div>
+                        <p class="trust-quote">"Precision meets innovation in travel technology"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">Amadeus</div>
+                        <p class="trust-quote">"Leading-edge AI solutions for modern travelers"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">Booking.com</div>
+                        <p class="trust-quote">"Revolutionary approach to European travel planning"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">TUI Group</div>
+                        <p class="trust-quote">"Smart technology transforming holiday experiences"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">Expedia Group</div>
+                        <p class="trust-quote">"Next-generation travel intelligence platform"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">Rail Europe</div>
+                        <p class="trust-quote">"Seamless integration for European rail travel"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="trust-card">
+                        <div class="trust-logo">Accor Hotels</div>
+                        <p class="trust-quote">"Premium hospitality meets AI innovation"</p>
+                        <div class="trust-rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agents Section -->
+    <section class="agents" id="agents">
+        <h2 class="section-title">Your European AI Travel Assistants</h2>
+        <p class="section-subtitle">Intelligent chatbots fluent in local culture, language, and travel expertise for each destination</p>
+        
+        <div class="agents-grid">
+            <div class="agent-card" data-agent="switzerland">
+                <div class="agent-image">
+                    <div class="country-flag">🇨🇭</div>
+                    <div class="country-name">Switzerland</div>
+                </div>
+                <div class="agent-content">
+                    <h3>Switzerland</h3>
+                    <p>Expert in Alpine adventures, luxury experiences, and Swiss precision hospitality.</p>
+                    <ul class="agent-features">
+                        <li>Multilingual support (German, French, Italian)</li>
+                        <li>Ski resort recommendations</li>
+                        <li>Swiss Rail Pass optimization</li>
+                        <li>Luxury watches & chocolate tours</li>
+                    </ul>
+                    <a href="Switzerland/switzerland.html" class="agent-link">Chat with Swiss Agent</a>
+                </div>
+            </div>
+            
+            <div class="agent-card" data-agent="germany">
+                <div class="agent-image">
+                    <div class="country-flag">🇩🇪</div>
+                    <div class="country-name">Germany</div>
+                </div>
+                <div class="agent-content">
+                    <h3>Germany</h3>
+                    <p>Navigate historic cities, world-class museums, and authentic Bavarian culture.</p>
+                    <ul class="agent-features">
+                        <li>Oktoberfest & festival planning</li>
+                        <li>Castle & fortress tours</li>
+                        <li>Automotive heritage experiences</li>
+                        <li>Christmas market guides</li>
+                    </ul>
+                    <a href="Germany/germany.html" class="agent-link">Chat with German Agent</a>
+                </div>
+            </div>
+            
+            <div class="agent-card" data-agent="spain">
+                <div class="agent-image">
+                    <div class="country-flag">🇪🇸</div>
+                    <div class="country-name">Spain</div>
+                </div>
+                <div class="agent-content">
+                    <h3>Spain</h3>
+                    <p>Discover vibrant culture, Mediterranean beaches, and world-renowned gastronomy.</p>
+                    <ul class="agent-features">
+                        <li>Tapas & wine tours</li>
+                        <li>Flamenco show bookings</li>
+                        <li>Beach & island hopping</li>
+                        <li>Gaudí & architectural tours</li>
+                    </ul>
+                    <a href="Spain/spain.html" class="agent-link">Chat with Spanish Agent</a>
+                </div>
+            </div>
+            
+            <div class="agent-card" data-agent="france">
+                <div class="agent-image">
+                    <div class="country-flag">🇫🇷</div>
+                    <div class="country-name">France</div>
+                </div>
+                <div class="agent-content">
+                    <h3>France</h3>
+                    <p>Experience art, cuisine, and romance in the heart of European elegance.</p>
+                    <ul class="agent-features">
+                        <li>Paris insider experiences</li>
+                        <li>Wine region tours</li>
+                        <li>Michelin-star reservations</li>
+                        <li>Château & museum passes</li>
+                    </ul>
+                    <a href="France/france.html" class="agent-link">Chat with French Agent</a>
+                </div>
+            </div>
+            
+            <div class="agent-card" data-agent="italy">
+                <div class="agent-image">
+                    <div class="country-flag">🇮🇹</div>
+                    <div class="country-name">Italy</div>
+                </div>
+                <div class="agent-content">
+                    <h3>Italy</h3>
+                    <p>Immerse yourself in ancient history, Renaissance art, and authentic Italian lifestyle.</p>
+                    <ul class="agent-features">
+                        <li>Vatican & Colosseum tours</li>
+                        <li>Tuscan villa experiences</li>
+                        <li>Authentic Italian cooking classes</li>
+                        <li>Venice gondola bookings</li>
+                    </ul>
+                    <a href="Italy/italy.html" class="agent-link">Chat with Italian Agent</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="margin-bottom: 1rem;">TeamAi Travel</div>
+            <p class="section-subtitle" style="margin-bottom: 2rem;">Revolutionizing travel with artificial intelligence</p>
+            
+            <div class="social-links">
+                <a href="https://x.com" target="_blank" title="twitter" aria-label="X">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://facebook.com" target="_blank" title="Facebook" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" title="Instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            
+            <p style="color: var(--text-secondary); margin-top: 2rem;">
+                &copy; 2026 TeamAi Travel. All rights reserved. | Privacy Policy | Terms of Service
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+            
+            // Update progress bar
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Custom cursor
+        const cursorDot = document.getElementById('cursorDot');
+        const cursorOutline = document.getElementById('cursorOutline');
+
+        window.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+            
+            cursorOutline.style.left = e.clientX - 20 + 'px';
+            cursorOutline.style.top = e.clientY - 20 + 'px';
+        });
+
+        // Interactive elements cursor effect
+        const interactiveElements = document.querySelectorAll('a, button, .agent-card, .intro-card, .trust-card');
+        
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorDot.style.transform = 'scale(2)';
+                cursorOutline.style.transform = 'scale(1.5)';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursorDot.style.transform = 'scale(1)';
+                cursorOutline.style.transform = 'scale(1)';
+            });
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            const scrolled = window.pageYOffset;
+            
+            parallaxElements.forEach(el => {
+                const speed = 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.intro-card, .agent-card').forEach(card => {
+            card.style.opacity = '0';
+            observer.observe(card);
+        });
+
+        // Agent card click effect
+        document.querySelectorAll('.agent-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('agent-link')) {
+                    const link = this.querySelector('.agent-link');
+                    if (link) {
+                        link.click();
+                    }
+                }
+            });
+        });
+
+        // Smooth scroll enhancement
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add shimmer effect to cards on hover
+        document.querySelectorAll('.intro-card, .agent-card, .trust-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', x + 'px');
+                card.style.setProperty('--mouse-y', y + 'px');
+            });
+        });
+
+        // Typing effect for hero subtitle (optional enhancement)
+        const subtitle = document.querySelector('.hero-subtitle');
+        const subtitleText = subtitle.textContent;
+        subtitle.textContent = '';
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < subtitleText.length) {
+                subtitle.textContent += subtitleText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+
+        // Start typing effect after page load
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 1000);
+        });
+
+        // Add random floating animation to intro icons
+        document.querySelectorAll('.intro-icon').forEach((icon, index) => {
+            icon.style.animationDelay = (index * 0.2) + 's';
+        });
+
+        // Carousel pause on hover
+        const carouselTrack = document.querySelector('.carousel-track');
+        carouselTrack.addEventListener('mouseenter', () => {
+            carouselTrack.style.animationPlayState = 'paused';
+        });
+        
+        carouselTrack.addEventListener('mouseleave', () => {
+            carouselTrack.style.animationPlayState = 'running';
+        });
+
+        // Add tilt effect to agent cards
+        document.querySelectorAll('.agent-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `translateY(-15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

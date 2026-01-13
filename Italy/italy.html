@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Italy | Your Dream Italian Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-italy.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">🇮🇹 Italy Travel</div>
+        <div class="nav-links">
+            <a href="#destinations">Destinations</a>
+            <a href="#experiences">Experiences</a>
+            <a href="#plan">Plan Trip</a>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel -->
+    <div class="carousel-container">
+        <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide slide-1">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">The Colosseum</h1>
+                    <p class="carousel-subtitle">Ancient Rome's Greatest Arena</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-2">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Venice Canals</h1>
+                    <p class="carousel-subtitle">The Floating City</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-3">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Duomo di Firenze</h1>
+                    <p class="carousel-subtitle">Renaissance Masterpiece</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-4">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Amalfi Coast</h1>
+                    <p class="carousel-subtitle">Mediterranean Paradise</p>
+                </div>
+            </div>
+            <div class="carousel-slide slide-5">
+                <div class="carousel-content">
+                    <h1 class="carousel-title">Leaning Tower of Pisa</h1>
+                    <p class="carousel-subtitle">Iconic Architectural Wonder</p>
+                </div>
+            </div>
+        </div>
+        
+        <button class="carousel-arrow prev" onclick="moveCarousel(-1)">‹</button>
+        <button class="carousel-arrow next" onclick="moveCarousel(1)">›</button>
+        
+        <div class="carousel-nav" id="carouselNav">
+            <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+            <span class="carousel-dot" onclick="goToSlide(1)"></span>
+            <span class="carousel-dot" onclick="goToSlide(2)"></span>
+            <span class="carousel-dot" onclick="goToSlide(3)"></span>
+            <span class="carousel-dot" onclick="goToSlide(4)"></span>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">Discover the Beauty of Italy</h2>
+        <p class="section-subtitle">From ancient ruins to Renaissance art, let our AI assistant help you plan the perfect Italian getaway</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏛️</div>
+                <div class="feature-title">Ancient Rome</div>
+                <div class="feature-text">Walk through history at the Colosseum, Roman Forum, and Pantheon - witness 2,000 years of civilization</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🍕</div>
+                <div class="feature-title">Italian Cuisine</div>
+                <div class="feature-text">Savor authentic pizza, handmade pasta, gelato, and world-renowned wines in their birthplace</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-title">Renaissance Art</div>
+                <div class="feature-text">Marvel at Michelangelo's David, the Sistine Chapel, and masterpieces in the Uffizi Gallery</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🛶</div>
+                <div class="feature-title">Venice & Canals</div>
+                <div class="feature-text">Glide through romantic waterways, explore St. Mark's Square, and experience the Venetian magic</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🌊</div>
+                <div class="feature-title">Amalfi Coast</div>
+                <div class="feature-text">Discover dramatic cliffs, colorful villages like Positano, and crystal-clear Mediterranean waters</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🍇</div>
+                <div class="feature-title">Tuscan Countryside</div>
+                <div class="feature-text">Experience rolling vineyards, medieval hilltop towns, and some of the world's finest wines</div>
+            </div>
+        </div>
+        
+        <div class="cta-box">
+            <h3>Ready to Start Your Italian Adventure?</h3>
+            <p>💬 Chat with our AI travel assistant below to create your personalized itinerary</p>
+        </div>
+    </div>
+
+    <!-- Interactive Section: Map and Bot -->
+    <div class="interactive-section">
+        <div class="map-container">
+            <h3 class="map-title">📍 Explore Italy</h3>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3014939.2586889705!2d9.189982!3d41.871940!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d4fe82448dd203%3A0xe22cf55c24635e6f!2sItaly!5e0!3m2!1sen!2s!4v1234567890"
+                width="100%" 
+                height="450" 
+                style="border:0; border-radius: 15px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div class="map-info">
+                <p>🗺️ Click on the map to explore popular destinations across Italy</p>
+            </div>
+        </div>
+        
+        <div class="bot-wrapper">
+            <h3 class="bot-title">💬 AI Travel Assistant</h3>
+            <div id="bot-container">
+                <div id="bp-embedded-webchat"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>🇮🇹 Italy Travel | Your AI-Powered Journey Through Italy | © 2026</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 5;
+        const track = document.getElementById('carouselTrack');
+        const dots = document.querySelectorAll('.carousel-dot');
+        
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+        
+        // Auto-advance carousel every 5 seconds
+        setInterval(() => {
+            moveCarousel(1);
+        }, 5000);
+    </script>
+
+    
+    <script src="https://cdn.botpress.cloud/webchat/v3.5/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/01/12/16/20260112164624-UHJSMZSH.js" defer></script>
+    
+    <script>
+        window.botpressWebChat.init({
+            composerPlaceholder: 'Ask me anything about traveling to Italy...',
+            botConversationDescription: 'Your AI-powered Italy travel assistant',
+            botId: 'your-bot-id',
+            hostUrl: 'https://cdn.botpress.cloud/webchat/v2',
+            messagingUrl: 'https://messaging.botpress.cloud',
+            clientId: 'your-bot-id',
+            webhookId: 'your-webhook-id',
+            lazySocket: true,
+            themeName: 'prism',
+            botName: 'Italy Travel Assistant',
+            stylesheet: 'https://webchat-styler-css.botpress.app/prod/code/14d0eb3f-8c00-4faf-acb2-3addf65f6d66/v77913/style.css',
+            frontendVersion: 'v2',
+            useSessionStorage: true,
+            enableConversationDeletion: true,
+            showPoweredBy: false,
+            showBotInfoPage: true,
+            enableTranscriptDownload: false,
+            className: 'webchatIframe',
+            containerWidth: '100%25',
+            layoutWidth: '100%25',
+            hideWidget: true,
+            disableAnimations: true,
+            closeOnEscape: false,
+            showCloseButton: false
+        });
+        
+        window.addEventListener('load', function() {
+            // Inject webchat into the bot-container div
+            const botContainer = document.getElementById('bot-container');
+            const webchatIframe = document.querySelector('.webchatIframe');
+            
+            if (webchatIframe && botContainer) {
+                // Move the iframe into our container
+                botContainer.appendChild(webchatIframe);
+                
+                // Style the iframe to be fully embedded
+                webchatIframe.style.cssText = `
+                    position: relative !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                    border: none !important;
+                    border-radius: 10px !important;
+                    box-shadow: none !important;
+                `;
+            }
+            
+            // Open the chat immediately
+            window.botpressWebChat.sendEvent({ type: 'show' });
+        });
+    </script>
+    
+</html>
