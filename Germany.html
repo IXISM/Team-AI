@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Germany Travel Planner | TeamAI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --germany-black: #000000;
+            --germany-red: #DD0000;
+            --germany-gold: #FFCE00;
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-light: #e0e0e0;
+            --text-muted: #999;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--germany-black) 0%, #1a1a1a 50%, var(--germany-black) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--germany-black) 33%, var(--germany-red) 33%, var(--germany-red) 66%, var(--germany-gold) 66%);
+            z-index: 10;
+        }
+
+        .hero-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+        }
+
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--germany-red), transparent);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--germany-gold), transparent);
+            bottom: 20%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+
+        .shape3 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, var(--germany-red), transparent);
+            top: 50%;
+            right: 5%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.9); }
+            75% { transform: translate(40px, 20px) scale(1.05); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--germany-gold), var(--germany-red), var(--text-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 206, 0, 0.3);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-chat-prompt {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            color: var(--germany-gold);
+            font-weight: 600;
+            animation: fadeInUp 1s ease-out 0.6s both, pulse 2s ease infinite 2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .chat-icon {
+            font-size: 1.5rem;
+            animation: bounce 1.5s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--germany-gold), var(--text-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 60px;
+            font-size: 1.1rem;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            background: linear-gradient(180deg, var(--dark-bg), #111);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 206, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--germany-red), var(--germany-gold));
+            transition: left 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--germany-gold);
+            box-shadow: 0 20px 50px rgba(255, 206, 0, 0.2);
+            background: linear-gradient(135deg, #1a1a1a, #252525);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+        .feature-card:nth-child(7) { animation-delay: 0.7s; }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--germany-gold);
+        }
+
+        .feature-desc {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            background: linear-gradient(180deg, #111, var(--dark-bg));
+            position: relative;
+        }
+
+        .trust-carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding: 40px 0;
+        }
+
+        .trust-carousel {
+            display: flex;
+            animation: scrollTrust 30s linear infinite;
+            width: fit-content;
+        }
+
+        .trust-carousel:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollTrust {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .trust-item {
+            flex: 0 0 auto;
+            background: var(--card-bg);
+            padding: 40px 60px;
+            margin: 0 15px;
+            border-radius: 15px;
+            border: 1px solid rgba(221, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .trust-item:hover {
+            transform: scale(1.05);
+            border-color: var(--germany-red);
+            box-shadow: 0 10px 30px rgba(221, 0, 0, 0.3);
+        }
+
+        .trust-logo {
+            height: 70px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .trust-logo svg,
+        .trust-logo img {
+            max-height: 50px;
+            max-width: 160px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+
+        .trust-item:hover .trust-logo svg,
+        .trust-item:hover .trust-logo img {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+
+        .trust-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--germany-gold);
+            margin-bottom: 5px;
+        }
+
+        .trust-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background: var(--dark-bg);
+        }
+
+        .testimonials-carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        .testimonials-carousel {
+            display: flex;
+            animation: scrollTestimonials 40s linear infinite;
+            width: fit-content;
+        }
+
+        .testimonials-carousel:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollTestimonials {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .testimonial-card {
+            flex: 0 0 auto;
+            background: linear-gradient(135deg, var(--card-bg), #252525);
+            padding: 40px;
+            margin: 0 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 206, 0, 0.15);
+            min-width: 400px;
+            max-width: 400px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::after {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 150px;
+            color: rgba(255, 206, 0, 0.1);
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--germany-gold);
+            box-shadow: 0 20px 50px rgba(255, 206, 0, 0.2);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--germany-red), var(--germany-gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: var(--germany-gold);
+            margin-bottom: 3px;
+            font-size: 1.1rem;
+        }
+
+        .author-location {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: var(--germany-gold);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--germany-black), #1a1a1a, var(--germany-black));
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, transparent 0%, var(--germany-red) 50%, transparent 100%),
+                linear-gradient(0deg, transparent 0%, var(--germany-gold) 50%, transparent 100%);
+            opacity: 0.05;
+            animation: gradientShift 10s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--germany-gold), var(--text-light), var(--germany-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .chat-prompt {
+            font-size: 1.5rem;
+            color: var(--germany-gold);
+            font-weight: 700;
+            animation: pulse 2s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .chat-prompt-icon {
+            font-size: 2.5rem;
+            animation: bounce 1.5s ease infinite;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--germany-black);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 3px solid var(--germany-gold);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .footer-brand {
+            color: var(--germany-gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 80px 0;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-card {
+                min-width: 320px;
+                max-width: 320px;
+                padding: 30px;
+            }
+
+            .trust-item {
+                min-width: 250px;
+                padding: 30px 40px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .cta-section {
+                padding: 80px 20px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--germany-black);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--germany-red), var(--germany-gold));
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--germany-gold), var(--germany-red));
+        }
+
+        /* Botpress Chat Customization */
+        #bp-web-widget {
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-animation">
+            <div class="hero-shape shape1"></div>
+            <div class="hero-shape shape2"></div>
+            <div class="hero-shape shape3"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Germany Travel Planner</h1>
+            <p class="hero-subtitle">Your Journey Through Deutschland with TeamAi</p>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section class="intro-section">
+        <div class="container">
+            <h2 class="section-title">What Our Agent Does</h2>
+            <p class="section-subtitle">Everything you need for the perfect German adventure</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏰</div>
+                    <h3 class="feature-title">Attractions</h3>
+                    <p class="feature-desc">Must-see landmarks & hidden gems</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🚆</div>
+                    <h3 class="feature-title">Transport</h3>
+                    <p class="feature-desc">Trains, local transit, and getting around</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">Budget</h3>
+                    <p class="feature-desc">Cost-aware planning and smart spending</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3 class="feature-title">Culture & Etiquette</h3>
+                    <p class="feature-desc">Local customs and travel tips</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">Safety & Scams</h3>
+                    <p class="feature-desc">What to watch out for</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">✈️</div>
+                    <h3 class="feature-title">Flight Options</h3>
+                    <p class="feature-desc">Smart routing and timing insights</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3 class="feature-title">Tours</h3>
+                    <p class="feature-desc">Day trips and guided experiences</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <h2 class="section-title">Trusted By Leading Organizations</h2>
+            <p class="section-subtitle">Industry leaders recommend our travel planner</p>
+            
+            <div class="trust-carousel-wrapper">
+                <div class="trust-carousel">
+                    <div class="trust-item">
+                        <div class="trust-logo">
+                            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                                <text x="10" y="35" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="currentColor">TRAVEL WEEKLY</text>
+                            </svg>
+                        </div>
+                        <div class="trust-name">Travel Weekly</div>
+                        <div class="trust-desc">Leading Travel Publication</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-logo">
+                            <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="40" cy="40" r="25" fill="#05164D" stroke="#F9BA00" stroke-width="2"/>
+                                <circle cx="40" cy="40" r="18" fill="#F9BA00"/>
+                                <text x="75" y="48" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#05164D">Lufthansa</text>
+                            </svg>
+                        </div>
+                        <div class="trust-name">Lufthansa</div>
+                        <div class="trust-desc">Premium Airline Partner</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-logo">
+                            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="10" y="15" width="180" height="30" rx="5" fill="#003580"/>
+                                <text x="100" y="38" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">Booking.com</text>
+                            </svg>
+                        </div>
+                        <div class="trust-name">Booking.com</div>
+                        <div class="trust-desc">Global Accommodation Leader</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-logo">
+                            <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100" height="60" fill="#EC0016"/>
+                                <text x="50" y="42" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">DB</text>
+                            </svg>
+                        </div>
+                        <div class="trust-name">Deutsche Bahn</div>
+                        <div class="trust-desc">German Railway Partner</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-logo">
+                            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="30" cy="30" r="20" fill="#1D98D6"/>
+                                <text x="60" y="38" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#1D98D6">Lonely Planet</text>
+                            </svg>
+                        </div>
+                        <div class="trust-name">Lonely Planet</div>
+                        <div class="trust-desc">Travel Guide Authority</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-logo">
+                            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="30" cy="30" r="18" fill="#34E0A1" stroke="#00AA6C" stroke-width="2"/>
+                                <circle cx="25" cy="28" r="4" fill="black"/>
+                                <circle cx="35" cy="28" r="4" fill="black"/>
+                                <path d="M 22 35 Q 30 40 38 35" stroke="black" stroke-width="2" fill="none"/>
+                                <text x="60" y="38" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#00AA6C">TripAdvisor</text>
+                            </svg>
+                        </div>
+                        <div class="trust-name">TripAdvisor</div>
+                        <div class="trust-desc">Travel Review Platform</div>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="trust-item">
+                        <div class="trust-logo">
+                            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                                <text x="10" y="35" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="currentColor">TRAVEL WEEKLY</text>
+                            </svg>
+                        </div>
+                        <div class="trust-name">Travel Weekly</div>
+                        <div class="trust-desc">Leading Travel Publication</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-logo">
+                            <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="40" cy="40" r="25" fill="#05164D" stroke="#F9BA00" stroke-width="2"/>
+                                <circle cx="40" cy="40" r="18" fill="#F9BA00"/>
+                                <text x="75" y="48" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#05164D">Lufthansa</text>
+                            </svg>
+                        </div>
+                        <div class="trust-name">Lufthansa</div>
+                        <div class="trust-desc">Premium Airline Partner</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-logo">
+                            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="10" y="15" width="180" height="30" rx="5" fill="#003580"/>
+                                <text x="100" y="38" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">Booking.com</text>
+                            </svg>
+                        </div>
+                        <div class="trust-name">Booking.com</div>
+                        <div class="trust-desc">Global Accommodation Leader</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-logo">
+                            <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100" height="60" fill="#EC0016"/>
+                                <text x="50" y="42" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">DB</text>
+                            </svg>
+                        </div>
+                        <div class="trust-name">Deutsche Bahn</div>
+                        <div class="trust-desc">German Railway Partner</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-logo">
+                            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="30" cy="30" r="20" fill="#1D98D6"/>
+                                <text x="60" y="38" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#1D98D6">Lonely Planet</text>
+                            </svg>
+                        </div>
+                        <div class="trust-name">Lonely Planet</div>
+                        <div class="trust-desc">Travel Guide Authority</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-logo">
+                            <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="30" cy="30" r="18" fill="#34E0A1" stroke="#00AA6C" stroke-width="2"/>
+                                <circle cx="25" cy="28" r="4" fill="black"/>
+                                <circle cx="35" cy="28" r="4" fill="black"/>
+                                <path d="M 22 35 Q 30 40 38 35" stroke="black" stroke-width="2" fill="none"/>
+                                <text x="60" y="38" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#00AA6C">TripAdvisor</text>
+                            </svg>
+                        </div>
+                        <div class="trust-name">TripAdvisor</div>
+                        <div class="trust-desc">Travel Review Platform</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Travelers Say</h2>
+            <p class="section-subtitle">Real experiences from Singapore-based adventurers</p>
+            
+            <div class="testimonials-carousel-wrapper">
+                <div class="testimonials-carousel">
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"The Germany Travel Planner made our trip seamless! From finding hidden gems in Berlin to navigating the train system, everything was perfectly planned. Highly recommended!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👨</div>
+                            <div class="author-info">
+                                <div class="author-name">Marcus Tan</div>
+                                <div class="author-location">Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"Budget planning was spot-on! Saved hundreds on transport and found amazing local restaurants. The safety tips were invaluable. Best travel tool I've used!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👩</div>
+                            <div class="author-info">
+                                <div class="author-name">Sarah Lim</div>
+                                <div class="author-location">Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"As first-time visitors to Germany, this planner was a lifesaver. Cultural insights helped us blend in, and the attraction recommendations were incredible. Thank you TeamAI!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👨</div>
+                            <div class="author-info">
+                                <div class="author-name">David Ng</div>
+                                <div class="author-location">Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"The flight routing suggestions saved us time and money. The chatbot answered all our questions instantly. Planning our Germany trip has never been easier!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👩</div>
+                            <div class="author-info">
+                                <div class="author-name">Rachel Wong</div>
+                                <div class="author-location">Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"Loved the day trip recommendations! Visited Neuschwanstein Castle and Rothenburg. Every detail was covered. This AI planner is simply brilliant!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👨</div>
+                            <div class="author-info">
+                                <div class="author-name">Kevin Chua</div>
+                                <div class="author-location">Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"The etiquette guide was so helpful. Knew exactly how to act in restaurants and shops. Made authentic connections with locals thanks to these tips!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👩</div>
+                            <div class="author-info">
+                                <div class="author-name">Amanda Teo</div>
+                                <div class="author-location">Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate for seamless loop -->
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"The Germany Travel Planner made our trip seamless! From finding hidden gems in Berlin to navigating the train system, everything was perfectly planned. Highly recommended!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👨</div>
+                            <div class="author-info">
+                                <div class="author-name">Marcus Tan</div>
+                                <div class="author-location">Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"Budget planning was spot-on! Saved hundreds on transport and found amazing local restaurants. The safety tips were invaluable. Best travel tool I've used!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👩</div>
+                            <div class="author-info">
+                                <div class="author-name">Sarah Lim</div>
+                                <div class="author-location">Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"As first-time visitors to Germany, this planner was a lifesaver. Cultural insights helped us blend in, and the attraction recommendations were incredible. Thank you TeamAI!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👨</div>
+                            <div class="author-info">
+                                <div class="author-name">David Ng</div>
+                                <div class="author-location">Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"The flight routing suggestions saved us time and money. The chatbot answered all our questions instantly. Planning our Germany trip has never been easier!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👩</div>
+                            <div class="author-info">
+                                <div class="author-name">Rachel Wong</div>
+                                <div class="author-location">Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"Loved the day trip recommendations! Visited Neuschwanstein Castle and Rothenburg. Every detail was covered. This AI planner is simply brilliant!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👨</div>
+                            <div class="author-info">
+                                <div class="author-name">Kevin Chua</div>
+                                <div class="author-location">Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"The etiquette guide was so helpful. Knew exactly how to act in restaurants and shops. Made authentic connections with locals thanks to these tips!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">👩</div>
+                            <div class="author-info">
+                                <div class="author-name">Amanda Teo</div>
+                                <div class="author-location">Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="cta">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Explore Germany?</h2>
+            <p class="cta-text">Start chatting now and plan your perfect German adventure!</p>
+            <div class="chat-prompt">
+                
+                <span>Click the chat icon to begin</span>
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">Powered by</p>
+            <p class="footer-brand">TeamAI</p>
+            <p class="footer-text" style="margin-top: 10px;">© 2026 Germany Travel Planner. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Botpress Chat Integration -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.5/inject.js" defer></script>
+    <script src="https://files.bpcontent.cloud/2025/12/20/18/20251220183420-6HD8836W.js" defer></script>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        // Scroll animation observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Interactive hover effects for cards
+        document.querySelectorAll('.feature-card, .trust-item, .testimonial-card').forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero-shape');
+            
+            parallaxElements.forEach((el, index) => {
+                const speed = 0.5 + (index * 0.2);
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Remove unused button effect code
+
+        // Add loading animation when page loads
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
