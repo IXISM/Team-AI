@@ -404,6 +404,43 @@
                 overflow-y: auto;
                 padding: 14px;
             }
+            /* Full-screen mode */
+            .chat-float.full-screen {
+                width: 100% !important;
+                height: 100% !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                max-height: none !important;
+                border-radius: 0 !important;
+            }
+            .chat-float.full-screen .chat-messages {
+                height: calc(100vh - 180px);
+            }
+            .chat-float.full-screen .chat-container {
+                height: calc(100vh - 110px);
+            }
+            /* Centered layout for full-screen */
+            .chat-float.full-screen .chat-messages-wrapper {
+                max-width: 1000px;
+                margin: 0 auto;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            .chat-float.full-screen .chat-messages {
+                flex: 1;
+            }
+            .chat-float.full-screen .chat-input-wrapper {
+                max-width: 1000px;
+                margin: 0 auto;
+                width: 100%;
+                padding: 0 16px;
+            }
+            /* Dynamic bubble width for full-screen */
+            .chat-bubble.full-screen-bubble .bg-red-600,
+            .chat-bubble.full-screen-bubble .bg-gray-700 {
+                max-width: 85%;
+            }
             .chat-messages::-webkit-scrollbar { width: 6px; }
             .chat-messages::-webkit-scrollbar-thumb { background: var(--swiss-red); border-radius: 10px; }
             .chat-bubble { 
@@ -845,25 +882,32 @@
                         <div class="chat-subtitle">Objective, concise, ready</div>
                     </div>
                 </div>
-                <i class="chat-chevron" data-lucide="chevron-down" style="width:20px; height:20px;"></i>
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleFullScreen(event)" class="flex items-center justify-center hover:bg-white hover:bg-opacity-20 rounded p-1 transition-colors" title="Toggle fullscreen">
+                        <i id="fullscreenIcon" data-lucide="maximize-2" style="width:20px; height:20px;"></i>
+                    </button>
+                    <i class="chat-chevron" data-lucide="chevron-down" style="width:20px; height:20px;"></i>
+                </div>
             </div>
             <div class="chat-container p-4">
-                <div class="chat-messages space-y-4 mb-3" id="chatMessages">
-                    <div class="flex items-start space-x-3 chat-bubble">
-                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                            🤖
-                        </div>
-                        <div class="bg-gray-700 rounded-2xl rounded-tl-none px-4 py-3 max-w-xs">
-                            <p class="text-white">Grüezi! Ask me for routes, food picks, or safety signals across Switzerland.</p>
+                <div class="chat-messages-wrapper">
+                    <div class="chat-messages space-y-4 mb-3" id="chatMessages">
+                        <div class="flex items-start space-x-3 chat-bubble">
+                            <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                🤖
+                            </div>
+                            <div class="bg-gray-700 rounded-2xl rounded-tl-none px-4 py-3 max-w-xs">
+                                <p class="text-white">Grüezi! Ask me for routes, food picks, or safety signals across Switzerland.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-center items-center space-x-2 px-2 w-full">
+                <div class="chat-input-wrapper flex justify-center items-center space-x-2">
                     <input 
                         type="text" 
                         id="chatInput" 
                         placeholder="Ask Switzerland anything"
-                        class="flex-1 border border-gray-400 rounded-full px-4 py-2 focus:outline-none focus:border-[var(--swiss-red)] transition-colors text-white bg-gray-800 max-w-xs"
+                        class="flex-1 border border-gray-400 rounded-full px-4 py-2 focus:outline-none focus:border-[var(--swiss-red)] transition-colors text-white bg-gray-800"
                         onkeypress="if(event.key === 'Enter') sendMessage()"
                     >
                     <button 
@@ -1032,26 +1076,29 @@
                 }
             }
 
-            function formatMarkdown(text) {
-                return text
-                    // Convert **text** to <strong>text</strong>
-                    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-bold">$1</strong>')
-                    // Convert • or * bullets into a list item with a gap
-                    .replace(/•\s/g, '<br><br>• ')
-                    // Ensure double line breaks turn into actual spacing
-                    .replace(/\n\n/g, '<br><br>');
-            }
+                    function formatMarkdown(text) {
+                        return text
+                            // Convert **text** to bold
+                            .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-bold">$1</strong>')
+                            // Clean up bullet points: no extra breaks, just a small indent
+                            .replace(/•\s/g, '<div style="margin-top: 2px;">• ')
+                            .replace(/\n•/g, '</div><div style="margin-top: 2px;">• ')
+                            // Handle single line breaks for tight grouping
+                            .replace(/\n/g, '<br>');
+                    }
 
             function addMessage(message, isUser = false) {
                 const messageDiv = document.createElement('div');
-                messageDiv.className = `flex items-start space-x-3 chat-bubble ${isUser ? 'justify-end' : ''}`;
+                const chatFloat = document.getElementById('chatFloat');
+                const isFullScreen = chatFloat.classList.contains('full-screen');
+                messageDiv.className = `flex items-start space-x-3 chat-bubble ${isUser ? 'justify-end' : ''} ${isFullScreen ? 'full-screen-bubble' : ''}`;
                 
                 // Use the formatter here
                 const formattedMessage = isUser ? escapeHtml(message) : formatMarkdown(message);
 
                 if (isUser) {
                     messageDiv.innerHTML = `
-                        <div class="bg-red-600 text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-xs">
+                        <div class="bg-red-600 text-white rounded-2xl rounded-tr-none px-4 py-3 ${isFullScreen ? '' : 'max-w-xs'}">
                             <p>${formattedMessage}</p>
                         </div>
                         <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white flex-shrink-0">👤</div>
@@ -1059,7 +1106,7 @@
                 } else {
                     messageDiv.innerHTML = `
                         <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">🤖</div>
-                        <div class="bg-gray-700 rounded-2xl rounded-tl-none px-4 py-3 max-w-xs text-white">
+                        <div class="bg-gray-700 rounded-2xl rounded-tl-none px-4 py-3 ${isFullScreen ? '' : 'max-w-xs'} text-white">
                             ${formattedMessage}
                         </div>
                     `;
@@ -1127,6 +1174,30 @@
                 }
                 // Focus on chat input
                 document.getElementById('chatInput').focus();
+            }
+
+            // Toggle full-screen mode
+            function toggleFullScreen(event) {
+                event.stopPropagation();
+                const chatFloat = document.getElementById('chatFloat');
+                const fullscreenIcon = document.getElementById('fullscreenIcon');
+                
+                // If minimized, un-minimize first
+                if (chatFloat.classList.contains('minimized')) {
+                    chatFloat.classList.remove('minimized');
+                }
+                
+                // Toggle full-screen class
+                chatFloat.classList.toggle('full-screen');
+                
+                // Update icon
+                if (chatFloat.classList.contains('full-screen')) {
+                    fullscreenIcon.setAttribute('data-lucide', 'minimize-2');
+                } else {
+                    fullscreenIcon.setAttribute('data-lucide', 'maximize-2');
+                }
+                
+                lucide.createIcons();
             }
 
             // Scroll to a section
